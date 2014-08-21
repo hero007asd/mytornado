@@ -8,9 +8,20 @@
 import settings
 import os
 from lib import util
-from lib import uimodules
+from lib import common_uimodule
+from importlib import import_module
 
 settings = util.setting_from_object(settings)
+
+uimodules = []
+
+uimodules.append(common_uimodule)
+
+# set uimodules
+for i in os.listdir('web/uiwidget'):
+    if i[-2:] =='py' and i != '__init__.py':
+        module = import_module('.%s' % i[:-3], 'web.uiwidget')
+        uimodules.append(module)
 
 settings.update({
         'template_path':os.path.join(os.path.dirname(__file__), 'web/template'),
@@ -22,3 +33,5 @@ settings.update({
         'ui_modules' : uimodules,
         'autoescape':None
     })
+
+

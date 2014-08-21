@@ -8,14 +8,15 @@
 import logging
 import tornado
 import tornado.web
+import os
 from tornado.httpserver import HTTPServer
 from tornado.options import define, parse_command_line, options
 from bootloader import settings
-from lib.route import Route
+# from lib.route import Route
 # add handler here
-import os
-from lib.tornado_routes import make_handlers, include, get_all_handler
+from lib.tornado_routes import make_handlers, get_all_handler
 from web import model
+from minirest import handler as h
 
 define('cmd', default='runserver', metavar='runserver|syncdb')   # python manage.py --cmd=syncdb
 define("port", default=8080, type=int)
@@ -29,6 +30,7 @@ class Application(tornado.web.Application):
                     ]
         URL_PREFIX = ''
         handlers += make_handlers(URL_PREFIX, get_all_handler(os.path.dirname(__file__), 'web/handler/'))
+        handlers += [tornado.web.url(r'/apidoc/doc', h.ApidocHandler)]  #apidoc handler
         tornado.web.Application.__init__(self, handlers, **settings)
 
 def syncdb():
@@ -47,10 +49,12 @@ def syncdb():
 def runserver():
     http_server = HTTPServer(Application(), xheaders = True)
     http_server.listen(options.port)
+    # http_server.bind(options.port)
+    # http_server.start(num_processes=0)
 
     loop = tornado.ioloop.IOLoop.instance()
 
-    print 'server running on http://localhost:%d' % (options.port)
+    # print 'server running on http://localhost:%d' % (options.port)
     logging.info("Server running  on http://0.0.0.0:%d" %(options.port))
     loop.start()
 

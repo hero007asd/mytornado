@@ -33,19 +33,19 @@ class BaseHandler(RequestHandler, FlashMessagesMixin):
     def memcachedb(self):
         return self.application.memcachedb
     
-    @property
-    def session(self):
-        if hasattr(self, '_session'):
-            return self._session
-        else:
-            sessionid = self.get_secure_cookie('sid')
-            self._session = Session(self.application.session_store, sessionid, expires_days=1)
-            if not sessionid:
-                self.set_secure_cookie('sid', self._session.id, expires_days=1)
-            return self._session
+    # @property
+    # def session(self):
+    #     if hasattr(self, '_session'):
+    #         return self._session
+    #     else:
+    #         sessionid = self.get_secure_cookie('sid')
+    #         self._session = Session(self.application.session_store, sessionid, expires_days=1)
+    #         if not sessionid:
+    #             self.set_secure_cookie('sid', self._session.id, expires_days=1)
+    #         return self._session
     
-    def get_current_user(self):
-        return self.session['user'] if 'user' in self.session else None
+    # def get_current_user(self):
+    #     return self.session['user'] if 'user' in self.session else None
     
     @property
     def next_url(self):

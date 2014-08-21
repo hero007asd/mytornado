@@ -163,7 +163,7 @@ def routes(*routes):
 import os
 def get_all_handler(module_folder_path, module_folder, old_str='/' , new_str='.'):
     ''' add by tommy 
-    loop for get all handler
+    loop subfolder to get all handler
     @module_folder_path  :  for the handler's path
     @module_folder            :  the folder which include the all handler
     '''

@@ -12,4 +12,4 @@ from web.handler import BaseHandler
 @route(r'/user/index.doc', name='user_index')
 class IndexHandler(BaseHandler):
     def get(self):
-        self.write('a')
+        self.render("test.html")
