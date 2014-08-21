@@ -161,7 +161,7 @@ def routes(*routes):
     return decorator
 
 import os
-def get_all_handler(module_folder_path, module_folder, old_str='/' , new_str='.'):
+def get_all_handler(module_folder_path, module_folder, *args):
     ''' add by tommy 
     loop subfolder to get all handler
     @module_folder_path  :  for the handler's path
@@ -172,9 +172,7 @@ def get_all_handler(module_folder_path, module_folder, old_str='/' , new_str='.'
     for myfile in os.listdir(current_path):
         mydir = os.path.join(os.path.dirname(current_path), myfile)
         if(os.path.isdir(mydir)):
-            current_module = mydir[mydir.index(module_folder):].replace(old_str, new_str)
-            # result +=[w[:-3] for w in os.listdir(mydir) if w[-2:] == 'py' and w != '__init__.py']
             for bfile in os.listdir(mydir):
-                if bfile[-2:] == 'py' and bfile != '__init__.py':
-                    result.append((r'/', include(current_module + '.' + bfile[:-3])))
+                if bfile.endswith('.py') and bfile != '__init__.py':
+                    result.append((r'/', include('.'.join(args) + '.' + myfile + '.' + bfile[:-3])))
     return result

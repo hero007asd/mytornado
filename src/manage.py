@@ -29,7 +29,8 @@ class Application(tornado.web.Application):
                     tornado.web.url(r"/upload/(.+)", tornado.web.StaticFileHandler, dict(path=settings['upload_path']), name='upload_path'),
                     ]
         URL_PREFIX = ''
-        handlers += make_handlers(URL_PREFIX, get_all_handler(os.path.dirname(__file__), 'web/handler/'))
+        # handlers += make_handlers(URL_PREFIX, get_all_handler(os.path.dirname(__file__), 'web/handler/'))
+        handlers += make_handlers(URL_PREFIX, get_all_handler(os.path.dirname(os.path.abspath(__file__)), 'web/handler/', 'web', 'handler'))
         handlers += [tornado.web.url(r'/apidoc/doc', h.ApidocHandler)]  #apidoc handler
         tornado.web.Application.__init__(self, handlers, **settings)
 

@@ -14,17 +14,20 @@ import md5
 @route(r'api/test',name='apitest')
 class TestApi(BaseApiHandler):
     '''
-    @param username 
-    @param password
+    @title 测试用的登陆接口
+    @method get
+    @param username 姓名 12位最长
+    @param password 密码 md5加密
     @return {return_code:1, message:null}
-    test for api
+    @returnfield status 登陆状态 1.登陆成功2.登陆失败
+    @description test api for description
     '''
     @gen.coroutine
     def get(self):
         self.write('a')
-        print self.__doc__
+        # print self.__doc__.splitlines()
         # print  self.__name__
-        print self.__class__.__name__
+        # print self.__class__.__name__
 
 class Test1Api(BaseApiHandler):
     '''

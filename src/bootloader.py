@@ -19,7 +19,7 @@ uimodules.append(common_uimodule)
 
 # set uimodules
 for i in os.listdir('web/uiwidget'):
-    if i[-2:] =='py' and i != '__init__.py':
+    if i.endswith('.py') and i != '__init__.py':
         module = import_module('.%s' % i[:-3], 'web.uiwidget')
         uimodules.append(module)
 
