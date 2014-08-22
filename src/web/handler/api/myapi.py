@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Date    : 2014-08-18 15:48:48
+# @Date    : 2014-08-22 01:14:23
 # @Author  : shitao.tommy (hero007asd@gmail.com)
 # @Link    : http://example.org
 # @Version : $Id$
@@ -10,10 +10,10 @@ from web.handler.api import BaseApiHandler
 from lib.tornado_routes import route
 from tornado import gen
 
-head_title = '测试'
+head_title = '登陆接口'
 
-@route(r'api/test',name='apitest')
-class TestApi(BaseApiHandler):
+@route(r'api/myapi',name='apitest2')
+class TestApi1(BaseApiHandler):
     '''
     @title 测试用的登陆接口
     @method get
@@ -26,11 +26,3 @@ class TestApi(BaseApiHandler):
     @gen.coroutine
     def get(self):
         self.write('a')
-
-@route(r'api/test1',name='apitest1')
-class Test1Api(BaseApiHandler):
-    '''
-    @param username234
-    '''
-    def get(self):
-        print 'asd'
