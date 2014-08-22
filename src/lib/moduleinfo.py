@@ -28,5 +28,5 @@ def get_module(module):
     if isinstance(module, (str, unicode)):
         module = load_module(module)
         return module
-    raise TypeError
+    raise TypeError('module name should be str, unicode, or byte')
 

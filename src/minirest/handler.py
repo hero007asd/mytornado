@@ -4,9 +4,8 @@
 # @Author  : shitao.tommy (hero007asd@gmail.com)
 # @Link    : http://example.org
 # @Version : $Id$  
-                                                                                                                                                 
-# import web.handler
-import os
+
+import os                                                                                                                                       
 from tornado.web import RequestHandler
 from tornado import web, template
 from web.handler.api import BaseApiHandler
