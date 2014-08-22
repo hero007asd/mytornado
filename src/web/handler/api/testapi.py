@@ -9,7 +9,8 @@ import os
 from web.handler.api import BaseApiHandler
 from lib.tornado_routes import route
 from tornado import gen
-import md5
+
+head_title = '测试'
 
 @route(r'api/test',name='apitest')
 class TestApi(BaseApiHandler):
@@ -25,10 +26,8 @@ class TestApi(BaseApiHandler):
     @gen.coroutine
     def get(self):
         self.write('a')
-        # print self.__doc__.splitlines()
-        # print  self.__name__
-        # print self.__class__.__name__
 
+@route(r'api/test1',name='apitest1')
 class Test1Api(BaseApiHandler):
     '''
     @param username234

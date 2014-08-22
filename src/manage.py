@@ -31,7 +31,7 @@ class Application(tornado.web.Application):
         URL_PREFIX = ''
         # handlers += make_handlers(URL_PREFIX, get_all_handler(os.path.dirname(__file__), 'web/handler/'))
         handlers += make_handlers(URL_PREFIX, get_all_handler(os.path.dirname(os.path.abspath(__file__)), 'web/handler/', 'web', 'handler'))
-        handlers += [tornado.web.url(r'/apidoc/doc', h.ApidocHandler)]  #apidoc handler
+        handlers += [tornado.web.url(r'/apidoc/doc/(.*)', h.ApidocHandler)]  #apidoc handler
         tornado.web.Application.__init__(self, handlers, **settings)
 
 def syncdb():
