@@ -3,6 +3,7 @@
 from tornado.web import RequestHandler
 from lib.session import Session
 from lib.mixin import FlashMessagesMixin
+from lib import log
 
 class BaseHandler(RequestHandler, FlashMessagesMixin):
     
@@ -75,3 +76,6 @@ class BaseHandler(RequestHandler, FlashMessagesMixin):
             
             self.memcachedb.replace('distributions', distributions, 86400)
         return distributions
+
+    def log_exception(self, typ, value, tb):
+        log.log_exception(self, typ, value, tb)

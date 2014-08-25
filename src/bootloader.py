@@ -10,6 +10,7 @@ import os
 from lib import util
 from lib import common_uimodule
 from importlib import import_module
+from lib import log
 
 settings = util.setting_from_object(settings)
 
@@ -31,7 +32,21 @@ settings.update({
         'login_url':'/signin',
         "xsrf_cookies": True,
         'ui_modules' : uimodules,
-        'autoescape':None
+        'autoescape':None,
+        'log_function':log.log_info,
+        
+        # #设置调试模式：
+        # 'debug' = True,
+        # #默认为False，即不是调试模式。
+        # ##设置gzip压缩：
+        # 'gzip'=True,
+        # #设置静态文件处理类：
+        # 'static_handler_class' = MyStaticFileHandler,
+        # #默认是tornado.web.StaticFileHandler
+
+        # #设置静态文件的参数：
+        # 'static_handler_args' = { "key1":"value1", "key2":"value2"  },
+        # #默认为空字典。
     })
 
 

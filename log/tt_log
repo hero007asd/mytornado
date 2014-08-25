@@ -1,0 +1,6 @@
+mytornado 2014-08-25 16:18:49,865 INFO log.py 304, GET, /apidoc/doc/testapi?a=1, ::1,
+mytornado 2014-08-25 16:30:35,108 INFO log.py 304  GET  /apidoc/doc/testapi?a=1  ::1
+mytornado 2014-08-25 16:31:09,173 INFO log.py 304  GET  /apidoc/doc/testapi  ::1
+mytornado 2014-08-25 16:31:10,711 INFO log.py 200  GET  /apidoc/doc/myapi  ::1
+mytornado 2014-08-25 16:31:11,533 INFO log.py 304  GET  /apidoc/doc/myapi  ::1
+mytornado 2014-08-25 16:31:12,463 INFO log.py 304  GET  /apidoc/doc/testapi  ::1

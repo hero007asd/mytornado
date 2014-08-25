@@ -25,6 +25,7 @@ class TestApi(BaseApiHandler):
     '''
     @gen.coroutine
     def get(self):
+        1/0
         self.write('a')
 
 @route(r'api/test1',name='apitest1')

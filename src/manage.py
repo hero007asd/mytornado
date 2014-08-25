@@ -15,6 +15,7 @@ from bootloader import settings
 # from lib.route import Route
 # add handler here
 from lib.tornado_routes import make_handlers, get_all_handler
+from lib import log
 from web import model
 from minirest import handler as h
 
@@ -57,10 +58,14 @@ def runserver():
 
     # print 'server running on http://localhost:%d' % (options.port)
     logging.info("Server running  on http://0.0.0.0:%d" %(options.port))
+    # sys.excepthook = log.log_exception
+    
     loop.start()
 
 if __name__ == '__main__':
     parse_command_line()
+
+    log.init_log(settings['log_name'])
     
     if options.cmd == 'syncdb':
         syncdb()

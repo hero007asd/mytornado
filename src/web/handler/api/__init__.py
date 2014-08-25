@@ -7,6 +7,7 @@
 
 from tornado.web import RequestHandler
 from minirest import auth
+from lib import log
 
 class BaseApiHandler(RequestHandler):
 
@@ -38,12 +39,13 @@ class BaseApiHandler(RequestHandler):
                     self.finish()
 
     def on_finish(self):
-        print 'end'
-        print self.request.remote_ip
-
+        pass
         # print self.request.uri
         # print self.request.remote_ip
         # print self.request.query
 
     def get_current_user(self):
         pass
+
+    def log_exception(self, typ, value, tb):
+        log.log_exception(self, typ, value, tb)

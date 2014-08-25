@@ -39,3 +39,13 @@ ALIPAY_TRANSPORT='https'
 SMS_KEY = 0
 SMS_SECRET = ''
 SMS_GATEWAY = 'http://sms.bechtech.cn/Api/send/data/json'
+
+# Queue、gearman、
+
+# Redis
+
+# Sentry
+
+# log
+LOG_NAME = 'mytornado'
+LOG_PATH = '../log/tt_log'
