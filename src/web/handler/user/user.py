@@ -8,8 +8,12 @@
 # from lib.route import route
 from lib.tornado_routes import route
 from web.handler import BaseHandler
+from web.model import user as u
 
 @route(r'/user/index.doc', name='user_index')
 class IndexHandler(BaseHandler):
     def get(self):
-        self.render("test.html")
+        user = u.User.create(name='shitao')
+        info = u.User.get(name='shitao')
+        # self.render("test.html")
+        self.write(info.name)
