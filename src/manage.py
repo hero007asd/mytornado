@@ -20,7 +20,7 @@ from web import model
 from minirest import handler as h
 
 define('cmd', default='runserver', metavar='runserver|syncdb')   # python manage.py --cmd=syncdb
-define("port", default=8080, type=int)
+define("port", default=8000, type=int)
 
 
 class Application(tornado.web.Application):
