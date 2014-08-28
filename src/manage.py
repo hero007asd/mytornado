@@ -43,6 +43,7 @@ def syncdb():
     models = find_subclasses(db.Model)
 
     for model in models:
+        print model
         if model.table_exists():
             model.drop_table()
         model.create_table()

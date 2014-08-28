@@ -1,2 +1,3 @@
 #don't add *.pyc file
 *.pyc
+sftp-config.json

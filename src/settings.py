@@ -9,11 +9,11 @@ DEBUG = True
 GZIIP =  True
 
 
-DB_HOST= 'localhost'
-DB_PORT= 3306
-DB_USER = 'root'
-DB_PASSWD = 'password'
-DB_NAME = 'database'
+# DB_HOST= 'localhost'
+# DB_PORT= 3306
+# DB_USER = 'root'
+# DB_PASSWD = 'password'
+# DB_NAME = 'database'
 
 
 MEMCACHE_HOST = 'localhost:11211'

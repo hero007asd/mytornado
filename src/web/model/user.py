@@ -7,6 +7,7 @@
 
 from conf.dbconf import db
 from peewee import *
+
 class User(db.Model):
     name = CharField()
 
