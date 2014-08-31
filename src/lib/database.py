@@ -49,6 +49,7 @@ class MysqlDb(BaseDb):
         # super.__init__(self, kw)
 
     def load_database(self):
+        print 'load database'
         self.db = self.config.pop('db')
         self.database = peewee.MySQLDatabase(self.db, **self.config)
 

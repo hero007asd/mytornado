@@ -16,11 +16,11 @@ from bootloader import settings
 # add handler here
 from lib.tornado_routes import make_handlers, get_all_handler
 from lib import log
-from web import model
 from minirest import handler as h
+from test.pcrawler import save_proxylist
 
 define('cmd', default='runserver', metavar='runserver|syncdb')   # python manage.py --cmd=syncdb
-define("port", default=8000, type=int)
+define("port", default=8080, type=int)
 
 
 class Application(tornado.web.Application):
@@ -38,7 +38,8 @@ class Application(tornado.web.Application):
 def syncdb():
     from lib.util import find_subclasses
     from conf.dbconf import db
-    from web.model.user import User  #TODO auto to get model 
+    from models.user import User  #TODO auto to get model 
+    from models.crawler import Proxy_proxy
 
     models = find_subclasses(db.Model)
 
@@ -56,8 +57,9 @@ def runserver():
     # http_server.start(num_processes=0)
 
     loop = tornado.ioloop.IOLoop.instance()
+    # add loop for get proxy url list
+    tornado.ioloop.PeriodicCallback(save_proxylist, 10*1000).start()
 
-    # print 'server running on http://localhost:%d' % (options.port)
     logging.info("Server running  on http://0.0.0.0:%d" %(options.port))
     # sys.excepthook = log.log_exception
     

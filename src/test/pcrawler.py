@@ -52,10 +52,37 @@ def handle_proxy_list(proxysource):
     # htmlSource = HTML.fromstring(proxysource)
     # print htmlSource
     # a = htmlSource.xpath(u'//table/tbody/tr[3]/td[2]')
-proxylist = handle_proxy_list(getproxylist())
-for pa in proxylist:
-    if len(pa) > 0:
-        print 'ip:' + pa[0]
-        print 'port:' + pa[1]
-        print 'protocol:' + pa[4]
-        print 'time:' + pa[-1]
+
+from models.crawler import Proxy_proxy
+from lib.timeutil import get_now_timestamp, str_to_timestamp
+def save_proxylist():
+    '''save proxy info list '''
+    proxylist = handle_proxy_list(getproxylist())
+
+    # get last time of update
+    query = Proxy_proxy.select(Proxy_proxy.ftime).order_by(Proxy_proxy.ftime.desc()).limit(1)
+    try:
+        lasttime = str_to_timestamp(query[0].ftime)
+    except Exception, e:
+        lasttime = 0
+
+    for pa in proxylist[::-1]:
+        if len(pa) > 0 and str_to_timestamp(pa[-1], yearlen=2, hassec=False) > lasttime:
+            proxy = Proxy_proxy()
+            proxy.fip = pa[0]
+            # proxy.fhost = pa[1]
+            proxy.fport = pa[1]
+            proxy.fprotocal = pa[4]
+            proxy.ftime = pa[-1]
+            proxy.fcreatetime = get_now_timestamp()
+            proxy.save()
+            # proxy.close()
+
+    # flush redis
+    
+
+
+# proxylist = handle_proxy_list(getproxylist())
+# print len(proxylist)
+# for pa in proxylist:
+#     print pa

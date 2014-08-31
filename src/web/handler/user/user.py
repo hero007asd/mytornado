@@ -8,7 +8,7 @@
 # from lib.route import route
 from lib.tornado_routes import route
 from web.handler import BaseHandler
-from web.model import user as u
+from models import user as u
 
 @route(r'/user/index.doc', name='user_index')
 class IndexHandler(BaseHandler):

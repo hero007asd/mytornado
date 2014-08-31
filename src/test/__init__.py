@@ -37,3 +37,9 @@
 # print os.getcwd()
 # print os.path.dirname(__file__)
 # print  findfiles(os.path.join(os.path.dirname(__file__)), '*.py')
+# import time
+# print time.localtime()
+# print time.gmtime()
+# # print time.mktime()
+# print time.time()
+# print int(time.time())
